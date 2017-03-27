@@ -3,7 +3,7 @@ import {LoginComponent} from "./header/login.component";
 import {SignupComponent} from "./header/signup.component";
 import {LogoutComponent} from "./header/logout.component";
 import {HomeComponent} from "./home/home.component";
-
+import {AuthGuard} from "./header/authguard.service";
 //
 export const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
