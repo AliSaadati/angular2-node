@@ -26,9 +26,11 @@ router.post('/', function(req, res, next){
   });
 });
 
-router.use('/login', function(req, res, next){
-  var stat = req.param('invalid');
-    res.send(stat);
+router.get('/login', function(req, res, next){
+  var stat = req._params;
+    res.status(201).json({
+        obj: stat
+    });
 });
 
 router.post('/login', function(req, res,next){

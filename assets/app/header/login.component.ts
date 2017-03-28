@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
                 }
             );
     }
-
+    onCllick(){
+        this.authService.authenticating().subscribe(data => console.log(data));
+    }
     ngOnInit() {
         this.myForm = new FormGroup({
             email: new FormControl(null,
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
             ]),
             password: new FormControl(null, Validators.required)
         });
-        this.message = 'Hi';
+        // this.authService.authenticating().subscribe(data => console.log(data.obj));
+
     }
 }

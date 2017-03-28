@@ -33,8 +33,10 @@ export class AuthenticationService {
         return localStorage.getItem('token') != null;
     }
 
-        public subscribe(onNext: (value: any) => void, onThrow?: (exception: any) => void, onReturn?: () => void) {
-        return this.locationWatcher.subscribe(onNext, onThrow, onReturn);
+    authenticating() {
+        return this.http.get('http://localhost:3000/user/login')
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
     logout() {
