@@ -36,4 +36,10 @@ export class AuthenticationService {
         public subscribe(onNext: (value: any) => void, onThrow?: (exception: any) => void, onReturn?: () => void) {
         return this.locationWatcher.subscribe(onNext, onThrow, onReturn);
     }
+
+    logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+
+    }
 }

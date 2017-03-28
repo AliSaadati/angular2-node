@@ -10,7 +10,7 @@ export const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'logout', component: LogoutComponent},
-    { path: 'home', component: HomeComponent}
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard]}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

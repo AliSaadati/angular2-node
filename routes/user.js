@@ -26,6 +26,11 @@ router.post('/', function(req, res, next){
   });
 });
 
+router.use('/login', function(req, res, next){
+  var stat = req.param('invalid');
+    res.send(stat);
+});
+
 router.post('/login', function(req, res,next){
   User.findOne({email: req.body.email}, function(err, user){
     if (err) {
