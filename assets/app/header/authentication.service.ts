@@ -11,8 +11,6 @@ import 'rxjs/add/operator/map';
 export class AuthenticationService {
     constructor (private http: Http) {}
 
-   private locationWatcher = new EventEmitter();
-
     signup(user: User) {
         const body = JSON.stringify(user);
         const  headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
@@ -25,16 +23,6 @@ export class AuthenticationService {
         const body = JSON.stringify(user);
         const  headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
         return this.http.post('http://localhost:3000/user/login', body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => Observable.throw(error.json()));
-    }
-
-    isAuthenticated() {
-        return localStorage.getItem('token') != null;
-    }
-
-    authenticating() {
-        return this.http.get('http://localhost:3000/user/login')
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

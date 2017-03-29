@@ -5,12 +5,12 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 
-router.post('/', function(req, res, next){
+router.post('/', function(req, res){
   var user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     password: bcrypt.hashSync(req.body.password, 10),
-    email: req.body.email,
+    email: req.body.email
   });
   user.save(function(err, result){
     if (err) {
@@ -26,14 +26,7 @@ router.post('/', function(req, res, next){
   });
 });
 
-router.get('/login', function(req, res, next){
-  var stat = req._params;
-    res.status(201).json({
-        obj: stat
-    });
-});
-
-router.post('/login', function(req, res,next){
+router.post('/login', function(req, res){
   User.findOne({email: req.body.email}, function(err, user){
     if (err) {
             return res.status(500).json({

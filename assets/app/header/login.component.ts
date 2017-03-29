@@ -1,19 +1,27 @@
 import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {User} from "./user.model";
-import {Headers, Response, Http} from "@angular/http";
-import {Observable} from "rxjs";
+
 import {AuthenticationService} from "./authentication.service";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 @Component ({
     selector: "app-login",
-    templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    styles: [`
+    .my-error {
+    color: red;
+    line-height: 3em;
+    }
+`]
 })
 
 export class LoginComponent implements OnInit {
-    message: String;
     myForm: FormGroup;
-    constructor(private router: Router, private authService: AuthenticationService){}
+    message: String;
+
+    constructor(private router: Router,
+                private authService: AuthenticationService,
+                private activatedRoute: ActivatedRoute){}
 
     onSubmit() {
         const user = new User(
@@ -29,9 +37,8 @@ export class LoginComponent implements OnInit {
                 }
             );
     }
-    onCllick(){
-        this.authService.authenticating().subscribe(data => console.log(data));
-    }
+
+
     ngOnInit() {
         this.myForm = new FormGroup({
             email: new FormControl(null,
@@ -40,7 +47,9 @@ export class LoginComponent implements OnInit {
             ]),
             password: new FormControl(null, Validators.required)
         });
-        // this.authService.authenticating().subscribe(data => console.log(data.obj));
 
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            if(params['auth']) this.message = "You must log in first";
+        });
     }
 }
