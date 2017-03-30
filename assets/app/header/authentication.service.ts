@@ -1,5 +1,5 @@
 
-import {Injectable, EventEmitter} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http, Headers, Response} from "@angular/http";
 import {User} from "./user.model";
 import "rxjs/Rx";
