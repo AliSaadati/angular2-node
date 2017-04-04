@@ -8,7 +8,6 @@ import {User} from "./user.model";
 })
 
 export class SignupComponent implements OnInit {
-    // Custom form for html template
     myForm: FormGroup;
     constructor (private authService: AuthenticationService){}
 

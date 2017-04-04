@@ -11,6 +11,7 @@ import {HomeComponent} from "./home/home.component";
 import {AuthenticationService} from "./header/authentication.service";
 import {HttpModule} from "@angular/http";
 import {AuthGuard} from "./header/authguard.service";
+import {Reroute} from "./header/reroute.service";
 import {InventoryAddComponent} from "./inventory/inventoryadd.component";
 import {OrderService} from "./inventory/order.service";
 import {HomeNav} from "./home/homenav.component";
@@ -37,7 +38,7 @@ import {InventoryRemoveComponent} from "./inventory/inventoryremove.component";
         ReactiveFormsModule,
         HttpModule],
     bootstrap: [AppComponent],
-    providers: [AuthenticationService, AuthGuard, OrderService]
+    providers: [AuthenticationService, AuthGuard, Reroute, OrderService]
 })
 export class AppModule {
 

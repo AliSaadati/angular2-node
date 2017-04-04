@@ -32,7 +32,7 @@ export class InventoryAddComponent implements OnInit{
         // FormGroup consolidates all controls into one object
         this.myForm = new FormGroup({
             flavor: new FormControl(null, Validators.required),
-            size: new FormControl(null, Validators.required),
+            size: new FormControl(),
             amount: new FormControl(null, Validators.required)
         });
     }

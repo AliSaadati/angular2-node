@@ -4,14 +4,15 @@ import {SignupComponent} from "./header/signup.component";
 import {LogoutComponent} from "./header/logout.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./header/authguard.service";
+import {Reroute} from "./header/reroute.service";
 import {InventoryAddComponent} from "./inventory/inventoryadd.component";
 import {InventoryQueryComponent} from "./inventory/inventoryquery.component";
 import {InventoryRemoveComponent} from "./inventory/inventoryremove.component";
 //
 export const APP_ROUTES: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
-    {path: 'login', component: LoginComponent},
-    {path: 'signup', component: SignupComponent},
+    {path: 'login', component: LoginComponent, canActivate: [Reroute]},
+    {path: 'signup', component: SignupComponent, canActivate: [Reroute]},
     {path: 'logout', component: LogoutComponent},
     {
         path: 'home',

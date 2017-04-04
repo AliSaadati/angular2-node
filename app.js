@@ -9,6 +9,8 @@ mongoose.Promise = global.Promise;
 
 var index = require('./routes/index');
 var user = require('./routes/user');
+var home = require('./routes/home');
+
 
 var app = express();
 mongoose.connect('localhost:27017/node2-angular');
@@ -33,6 +35,8 @@ app.use(function (req, res, next) {
 
 app.use('/', index);
 app.use('/user', user);
+app.use('/home', home);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
