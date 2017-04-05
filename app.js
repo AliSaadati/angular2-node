@@ -13,7 +13,7 @@ var home = require('./routes/home');
 
 
 var app = express();
-mongoose.connect('localhost:27017/node2-angular');
+mongoose.connect('mongodb://AliSaadati:D@r1u$@$2017Sd@ds153400.mlab.com:53400/inventory-tracker');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
