@@ -14,7 +14,7 @@ export class OrderService {
     addItems(orderForm: OrderForm){
         const body = JSON.stringify(orderForm);
         const  headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
-        return this.http.patch('http://inventory-manage.herokuapp.com//home/add', body, {headers: headers})
+        return this.http.patch('http://inventory-manage.herokuapp.com/home/add', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

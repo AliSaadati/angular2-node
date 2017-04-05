@@ -22,7 +22,7 @@ export class AuthenticationService {
     login(user: User) {
         const body = JSON.stringify(user);
         const  headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
-        return this.http.post('http://inventory-manage.herokuapp.com//user/login', body, {headers: headers})
+        return this.http.post('http://inventory-manage.herokuapp.com/user/login', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
