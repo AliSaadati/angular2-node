@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-var appRoutes = require('./routes/index');
+var appRoutes = require('./routes/app');
 var userRoutes = require('./routes/user');
 var homeRoutes = require('./routes/home');
 
@@ -40,7 +40,7 @@ app.use('/', appRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  res.render('index');
+  return res.render('index');
 });
 
 module.exports = app;
