@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-var index = require('./routes/index');
-var user = require('./routes/user');
-var home = require('./routes/home');
+var appRoutes = require('./routes/index');
+var userRoutes = require('./routes/user');
+var homeRoutes = require('./routes/home');
 
 
 var app = express();
@@ -33,9 +33,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/user', user);
-app.use('/home', home);
-app.use('/', index);
+app.use('/user', userRoutes);
+app.use('/home', homeRoutes);
+app.use('/', appRoutes);
 
 
 // catch 404 and forward to error handler
