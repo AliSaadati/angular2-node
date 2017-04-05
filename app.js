@@ -13,7 +13,7 @@ var home = require('./routes/home');
 
 
 var app = express();
-mongoose.connect('mongodb://Ali:1234@ds153400.mlab.com:53400/inventory-tracker');
+mongoose.connect('localhost:27017/node-angular');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -33,10 +33,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', index);
+
 app.use('/user', user);
 app.use('/home', home);
-
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
