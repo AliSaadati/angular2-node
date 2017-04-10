@@ -28,12 +28,11 @@ export class InventoryRemoveComponent implements OnInit{
     }
 
     ngOnInit() {
-
-        // FormGroup consolidates all controls into one object
-        this.myForm = new FormGroup({
-            flavor: new FormControl(null, Validators.required),
-            size: new FormControl(null, Validators.required),
-            amount: new FormControl(null, Validators.required)
-        });
+        // this.orderService.getInventory()
+        //     .subscribe(
+        //         (messages: Message[]) => {
+        //             this.messages = messages;
+        //         }
+        //     );
     }
 }
