@@ -1,29 +1,35 @@
 <div class="col-md-8 col-md-offset-2">
     <form [formGroup]="myForm"> <!--(ngSubmit)="onSubmit()"-->
-        <div class="form-group">
+        <div class="form-control">
             <label for="flavor">Flavor</label>
-            <select id="flavor"
-                    class="form-control"
+            <select [(ngModel)]="selectedFlavor.name"
+                    (change)="onSelect($event.target.value)"
+                    id="flavor"
                     formControlName="flavor">
-            <option value="small">small</option>
-            <option value="medium">medium</option>
-            <option value="large">large</option>
-            <option value="x-large">x-large</option>
-        </select>
+                <option *ngFor="let flavor of flavors" value={{flavor.name}}>{{flavor.name}}</option>
+            </select>
         </div>
-        <select class="form-control">
-            <label for="size">Size</label>
 
-        </select>
-        <div class="form-group">
-            <label for="amount">amount</label>
-            <input type="text"
-                   id="amount"
-                   class="form-control"
-                   formControlName="amount">
+        <br/>
+
+        <div class="form-control">
+            <label for="size">Size</label>
+            <select id="size"
+                    formControlName="size">
+                <option *ngFor="let detail of details" value="{{detail.size}}">{{detail.size}}</option>
+            </select>
         </div>
-        <button class="btn btn-primary"
-                type="submit"
-                [disabled]="!myForm.valid">Submit</button>
+
+        <!--<div class="form-group">-->
+            <!--<label for="amount">amount</label>-->
+            <!--<input type="text"-->
+                   <!--id="amount"-->
+                   <!--class="form-control"-->
+                   <!--formControlName="amount">-->
+        <!--</div>-->
+        <!--<button class="btn btn-primary"-->
+                <!--type="submit"-->
+                <!--[disabled]="!myForm.valid">Submit-->
+        <!--</button>-->
     </form>
 </div>
