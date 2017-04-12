@@ -18,4 +18,12 @@ export class OrderService {
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
+
+    getItems(){
+        const  headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
+        return this.http.post('http://localhost:3000/home/get')
+        .map((response: Response) => {
+            
+        })
+    }
 }
