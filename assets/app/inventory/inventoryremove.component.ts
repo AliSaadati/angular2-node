@@ -10,9 +10,9 @@ import {OrderService} from "./order.service";
 })
 
 export class InventoryRemoveComponent implements OnInit{
-    // flavors: ProductFlavor[];
+    flavors: ProductFlavor[];
     myForm: FormGroup;
-
+    selectedFlavor: ProductFlavor = new ProductFlavor("hello");
     constructor (private orderService: OrderService) {}
 
 
@@ -33,18 +33,18 @@ export class InventoryRemoveComponent implements OnInit{
     ngOnInit() {
 
         // FormGroup consolidates all controls into one object
-        // this.myForm = new FormGroup({
-        //     flavor: new FormControl(null, Validators.required),
-        //     size: new FormControl(),
-        //     amount: new FormControl(null, Validators.required)
-        // });
-        //
-        // this.orderService.getFlavors()
-        //     .subscribe(
-        //         (flavors: ProductFlavor[]) => {
-        //             this.flavors = flavors;
-        //         }
-        //     );
+        this.myForm = new FormGroup({
+            flavor: new FormControl(),
+        });
+
+        this.orderService.getFlavors()
+            .subscribe(
+                (flavors: ProductFlavor[]) => {
+                    this.flavors = flavors;
+                }
+            );
 
     }
+
+    onSelect(item){}
 }

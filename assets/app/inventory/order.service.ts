@@ -24,6 +24,7 @@ export class OrderService {
         return this.http.get('http://localhost:3000/home/flavors')
         .map((response: Response) => {
             const flavors = response.json().obj;
+            console.log(response.json().obj);
             let  finalFlavors: ProductFlavor[] = [];
             for (let flavor of flavors) {
                 finalFlavors.push(new ProductFlavor(
