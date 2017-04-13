@@ -24,7 +24,6 @@ export class OrderService {
         return this.http.get('http://localhost:3000/home/flavors')
         .map((response: Response) => {
             const flavors = response.json().obj;
-            console.log(response.json().obj);
             let  finalFlavors: ProductFlavor[] = [];
             for (let flavor of flavors) {
                 finalFlavors.push(new ProductFlavor(
@@ -36,5 +35,22 @@ export class OrderService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    getDetails(){
+        return this.http.get('http://localhost:3000/home/details')
+            .map((response: Response) => {
+                const products = response.json().obj;
+                let  finalDetails: ProductDetails[] = [];
+                for (let product of products) {
+                    for (let detail of product.details) {
+                    finalDetails.push(new ProductDetails(
+                        product.flavor,
+                        detail.size,
+                        detail.amount
+                    ));
+                }}
+                return finalDetails;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
 
 }

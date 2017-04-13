@@ -9,13 +9,16 @@ import {OrderService} from "./order.service";
     templateUrl: "./inventoryremove.component.html"
 })
 
-export class InventoryRemoveComponent implements OnInit{
+export class InventoryRemoveComponent implements OnInit {
     flavors: ProductFlavor[];
     details: ProductDetails[];
+    allDetails: ProductDetails[];
     myForm: FormGroup;
-    selectedDetail: ProductDetails;
+    selectedDetail: ProductDetails = new ProductDetails("1", "1", 1);
     selectedFlavor: ProductFlavor = new ProductFlavor("hello");
-    constructor (private orderService: OrderService) {}
+
+    constructor(private orderService: OrderService) {
+    }
 
 
     // onSubmit() {
@@ -37,16 +40,31 @@ export class InventoryRemoveComponent implements OnInit{
         // FormGroup consolidates all controls into one object
         this.myForm = new FormGroup({
             flavor: new FormControl(),
+            size: new FormControl(),
+            amount: new FormControl()
         });
 
         this.orderService.getFlavors()
             .subscribe(
                 (flavors: ProductFlavor[]) => {
                     this.flavors = flavors;
-                }
-            );
+                });
 
+        this.orderService.getDetails()
+            .subscribe(
+            (details: ProductDetails[]) => {
+                this.allDetails = details;
+            });
     }
 
-    onSelect(item){}
+    onSelect(flavor) {
+        this.details = this.allDetails.filter((item) => item.flavor == flavor );
+    }
+    showdetail() {
+        console.log(this.selectedDetail);
+    }
+
+    setDetail(item) {
+        this.selectedDetail.amount = item;
+    }
 }

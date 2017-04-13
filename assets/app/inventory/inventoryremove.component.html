@@ -15,11 +15,12 @@
 
        <div class="form-group">
             <label for="size">Size</label>
-            <select [(ngModel)]="selectedDetail"
+            <select
                     id="size"
                     formControlName="size"
-                    class="form-control">
-                <option *ngFor="let detail of details" value={{detail.size}}>{{detail.size}}</option>
+                    class="form-control"
+                    (change)="setDetail($event.target.value)">
+                <option *ngFor="let detail of details" value={{detail.amount}}>{{detail.size}}</option>
             </select>
         </div>
 
@@ -28,7 +29,8 @@
             <input type="text"
                    id="amount"
                    class="form-control"
-                   formControlName="amount">
+                   formControlName="amount"
+                    value="{{selectedDetail.amount}}">
         </div>
         <!--<button class="btn btn-primary"
                 type="submit"

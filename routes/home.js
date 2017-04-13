@@ -99,4 +99,19 @@ router.get('/flavors', function(req, res) {
     });
 });
 
+router.get('/details', function(req, res) {
+    Products.find().populate('details').exec(function (err, product) {
+        if (err) {
+            return res.status(500).json({
+                title: 'Error accessing database',
+                error: err
+            });
+        }
+        res.status(200).json({
+            message: 'Got Details',
+            obj: product
+        });
+    });
+});
+
 module.exports = router;

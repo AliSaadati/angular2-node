@@ -1,6 +1,7 @@
 export class ProductDetails {
 
-    constructor(public size: string,
+    constructor(public flavor: string,
+                public size: string,
                 public amount: number){
     }
 }
