@@ -11,7 +11,9 @@ import {OrderService} from "./order.service";
 
 export class InventoryRemoveComponent implements OnInit{
     flavors: ProductFlavor[];
+    details: ProductDetails[];
     myForm: FormGroup;
+    selectedDetail: ProductDetails;
     selectedFlavor: ProductFlavor = new ProductFlavor("hello");
     constructor (private orderService: OrderService) {}
 
