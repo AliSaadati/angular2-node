@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {OrderForm} from "./orderform.model";
@@ -16,7 +17,7 @@ export class InventoryRemoveComponent implements OnInit {
     myForm: FormGroup;
     selectedDetail: ProductDetails = new ProductDetails(null, null, null);
 
-    constructor(private orderService: OrderService) {
+    constructor(private orderService: OrderService, private router: Router) {
     }
 
     ngOnInit() {
@@ -42,10 +43,13 @@ export class InventoryRemoveComponent implements OnInit {
     }
 
     onSelect(flavor) {
-        this.details = this.allDetails.filter((item) => item.flavor == flavor );
+        this.details = this.allDetails.filter((item) => {
+        this.selectedDetail.size = null;
+        return item.flavor == flavor;} );
     }
 
     onSubmit() {
+
         const orderForm = new OrderForm(
             this.myForm.value.flavor,
             this.selectedDetail.size,
@@ -59,9 +63,18 @@ export class InventoryRemoveComponent implements OnInit {
     }
 
     setDetail(){
+        console.log("selected detail: ");
         console.log(this.selectedDetail);
-    }
+        console.log("details array: ");
+        console.log(this.details);
+        console.log("allDetails array: ");
+        console.log( this.allDetails);
 
+
+    }
+    setDetails(id){
+        this.selectedDetail = this.allDetails.find((item) => item.id == id );
+    }
 
 
 }

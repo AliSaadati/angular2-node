@@ -2,12 +2,12 @@
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="flavor">Flavor</label>
-            <select [(ngModel)]="selectedDetail.flavor"
+            <select [ngModel]="selectedDetail.flavor"
                     (change)="onSelect($event.target.value)"
                     id="flavor"
                     formControlName="flavor"
                     class="form-control">
-                <option *ngFor="let flavor of flavors" value={{flavor.name}}>{{flavor.name}}</option>
+                <option *ngFor="let flavor of flavors" [value]="flavor.name">{{flavor.name}}</option>
             </select>
         </div>
 
@@ -15,11 +15,12 @@
 
        <div class="form-group">
             <label for="size">Size</label>
-            <select [(ngModel)]="selectedDetail"
+            <select
+                    (change)="setDetails($event.target.value)"
                     id="size"
                     formControlName="size"
                     class="form-control">
-                <option *ngFor="let detail of details" [ngValue]="detail">{{detail.size}}</option>
+                <option *ngFor="let detail of details" [value]="detail.id">{{detail.size}}</option>
             </select>
         </div>
         <br/>

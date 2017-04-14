@@ -45,7 +45,8 @@ export class OrderService {
                     finalDetails.push(new ProductDetails(
                         product.flavor,
                         detail.size,
-                        detail.amount
+                        detail.amount,
+                        detail.id
                     ));
                 }}
                 return finalDetails;
