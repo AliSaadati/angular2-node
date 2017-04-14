@@ -15,32 +15,16 @@ export class InventoryRemoveComponent implements OnInit {
     allDetails: ProductDetails[];
     myForm: FormGroup;
     selectedDetail: ProductDetails = new ProductDetails(null, null, null);
-    selectedFlavor: ProductFlavor = new ProductFlavor("hello");
 
     constructor(private orderService: OrderService) {
     }
-
-
-    // onSubmit() {
-    //     const orderForm = new OrderForm(
-    //         this.myForm.value.flavor,
-    //         "1",
-    //         this.myForm.value.amount
-    //     );
-    //     this.orderService.addItems(orderForm)
-    //         .subscribe(
-    //             data => console.log(data),
-    //             error => console.log(error)
-    //         );
-    //     this.myForm.reset();
-    // }
 
     ngOnInit() {
 
         // FormGroup consolidates all controls into one object
         this.myForm = new FormGroup({
-            flavor: new FormControl(),
-            size: new FormControl(),
+            flavor: new FormControl(Validators.required),
+            size: new FormControl(Validators.required),
             amount: new FormControl()
         });
 
@@ -60,13 +44,24 @@ export class InventoryRemoveComponent implements OnInit {
     onSelect(flavor) {
         this.details = this.allDetails.filter((item) => item.flavor == flavor );
     }
-    showDetail(selectedDetail) {
-        console.log(selectedDetail);
+
+    onSubmit() {
+        const orderForm = new OrderForm(
+            this.myForm.value.flavor,
+            this.selectedDetail.size,
+            this.myForm.value.amount
+        );
+        this.orderService.addItems(orderForm)
+            .subscribe(
+                data => this.orderService.tempAlert(data.message, 2500),
+                error => this.orderService.tempAlert(error.message, 2500)
+            );
     }
 
-    setDetail(item: ProductDetails) {
-        console.log(item);
-        this.selectedDetail = item;
+    setDetail(){
         console.log(this.selectedDetail);
     }
+
+
+
 }

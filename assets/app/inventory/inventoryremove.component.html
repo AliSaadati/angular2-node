@@ -1,8 +1,8 @@
 <div class="col-md-8 col-md-offset-2">
-    <form [formGroup]="myForm">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="flavor">Flavor</label>
-            <select [(ngModel)]="selectedFlavor.name"
+            <select [(ngModel)]="selectedDetail.flavor"
                     (change)="onSelect($event.target.value)"
                     id="flavor"
                     formControlName="flavor"
@@ -16,7 +16,6 @@
        <div class="form-group">
             <label for="size">Size</label>
             <select [(ngModel)]="selectedDetail"
-                    (ngModelChange)="showDetail($event)"
                     id="size"
                     formControlName="size"
                     class="form-control">
@@ -25,16 +24,20 @@
         </div>
         <br/>
         <div class="form-group">
-            <label for="amount">amount</label>
+            <label for="amount">amount to remove from total of {{selectedDetail.amount}}</label>
             <input type="text"
                    id="amount"
                    class="form-control"
                    formControlName="amount"
-                   value="{{selectedDetail.amount}}">
+                   #amount
+            >
         </div>
-        <!--<button class="btn btn-primary"
+        <button class="btn btn-primary"
                 type="submit"
-                [disabled]="!myForm.valid">Submit
-        </button>-->
+                [disabled]="!selectedDetail.size || (amount.value < 1 || amount.value > selectedDetail.amount)">Submit
+        </button>
+        <br/>
     </form>
+    <button (click)="setDetail()">Check detail</button>
+
 </div>

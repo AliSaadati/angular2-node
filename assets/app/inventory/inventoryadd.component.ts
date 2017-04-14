@@ -21,8 +21,8 @@ export class InventoryAddComponent implements OnInit{
         );
         this.orderService.addItems(orderForm)
             .subscribe(
-                data => console.log(data),
-                error => console.log(error)
+                data => this.orderService.tempAlert(data.message, 5000),
+                error => this.orderService.tempAlert(error.message, 5000)
             );
         this.myForm.reset();
     }
@@ -36,4 +36,6 @@ export class InventoryAddComponent implements OnInit{
             amount: new FormControl(null, Validators.required)
         });
     }
+
+
 }
