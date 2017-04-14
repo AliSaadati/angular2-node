@@ -14,7 +14,7 @@ export class InventoryRemoveComponent implements OnInit {
     details: ProductDetails[];
     allDetails: ProductDetails[];
     myForm: FormGroup;
-    selectedDetail: ProductDetails = new ProductDetails("1", "1", 1);
+    selectedDetail: ProductDetails = new ProductDetails(null, null, null);
     selectedFlavor: ProductFlavor = new ProductFlavor("hello");
 
     constructor(private orderService: OrderService) {
@@ -60,11 +60,13 @@ export class InventoryRemoveComponent implements OnInit {
     onSelect(flavor) {
         this.details = this.allDetails.filter((item) => item.flavor == flavor );
     }
-    showdetail() {
-        console.log(this.selectedDetail);
+    showDetail(selectedDetail) {
+        console.log(selectedDetail);
     }
 
-    setDetail(item) {
-        this.selectedDetail.amount = item;
+    setDetail(item: ProductDetails) {
+        console.log(item);
+        this.selectedDetail = item;
+        console.log(this.selectedDetail);
     }
 }
