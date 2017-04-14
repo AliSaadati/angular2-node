@@ -55,11 +55,16 @@ export class InventoryRemoveComponent implements OnInit {
             this.selectedDetail.size,
             this.myForm.value.amount
         );
-        this.orderService.addItems(orderForm)
+        this.orderService.removeInventory(orderForm)
             .subscribe(
                 data => this.orderService.tempAlert(data.message, 2500),
                 error => this.orderService.tempAlert(error.message, 2500)
             );
+        this.reloadInventory();  
+        this.selectedDetail.size = null;
+        this.selectedDetail.flavor = null;
+        this.selectedDetail.id = null;
+        this.selectedDetail.amount = null;
     }
 
     setDetail(){
@@ -69,12 +74,19 @@ export class InventoryRemoveComponent implements OnInit {
         console.log(this.details);
         console.log("allDetails array: ");
         console.log( this.allDetails);
-
+    
 
     }
     setDetails(id){
         this.selectedDetail = this.allDetails.find((item) => item.id == id );
     }
 
+    reloadInventory() {
 
+        this.orderService.getDetails()
+            .subscribe(
+            (details: ProductDetails[]) => {
+                this.allDetails = details;
+            });
+    }
 }
