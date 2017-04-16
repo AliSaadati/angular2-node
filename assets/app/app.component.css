@@ -1,4 +1,14 @@
 
 h1 {
-    color: red;
+    color: brown;
+    display: inline-block;
+    font-size: 36pt;
+}
+
+.title{
+    display: inline-block;
+}
+
+.title-img {
+    max-height: 130px;
 }

@@ -1,28 +1,19 @@
 <div class="col-md-8 col-md-offset-2">
-    <form [formGroup]="myForm"> <!--(ngSubmit)="onSubmit()"-->
-        <div class="form-group">
-            <label for="flavor">Ice Cream Flavor</label>
-            <input type="text"
-                   id="flavor"
-                   class="form-control"
-                   formControlName="flavor">
-        </div>
-        <select class="form-control">
-            <label for="size">Size</label>
-            <option value="small">small</option>
-            <option value="medium">medium</option>
-            <option value="large">large</option>
-            <option value="x-large">x-large</option>
-        </select>
-        <div class="form-group">
-            <label for="amount">amount</label>
-            <input type="text"
-                   id="amount"
-                   class="form-control"
-                   formControlName="amount">
-        </div>
-        <button class="btn btn-primary"
-                type="submit"
-                [disabled]="!myForm.valid">Submit</button>
-    </form>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Flavor</th>
+      <th>Size</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detail of allDetails">
+      <th scope="row">{{detail.flavor}}</th>
+      <td>{{detail.size}}</td>
+      <td>{{detail.amount}}</td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="sort(3)">Sort</button>
 </div>

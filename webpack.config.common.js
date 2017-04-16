@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -35,6 +36,10 @@ module.exports = {
             // The (\\|\/) piece accounts for path separators in *nix and Windows
             /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
             './src' // location of your src
-        )
+        ),
+          new CopyWebpackPlugin([{
+            from: 'assets/app/images',
+            to: './images'
+        }])
     ]
 };

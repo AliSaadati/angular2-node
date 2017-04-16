@@ -19,7 +19,7 @@ export const APP_ROUTES: Routes = [
         component: HomeComponent,
         canActivate: [AuthGuard],
         children: [
-            {path: '', redirectTo: 'query'},
+            {path: '', redirectTo: 'add'},
             {path: 'add', component: InventoryAddComponent, canActivate: [AuthGuard]},
             {path: 'remove', component: InventoryRemoveComponent, canActivate: [AuthGuard]},
             {path: 'query', component: InventoryQueryComponent, canActivate: [AuthGuard]}

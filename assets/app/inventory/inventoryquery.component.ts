@@ -1,39 +1,61 @@
-import {Component, OnInit} from "@angular/core";
-import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {OrderForm} from "./orderform.model";
-import {OrderService} from "./order.service";
+import { ProductDetails, ProductFlavor } from './productdetails.model';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { OrderForm } from "./orderform.model";
+import { OrderService } from "./order.service";
 
 @Component({
     selector: "app-inventoryquery",
     templateUrl: "./inventoryquery.component.html"
 })
 
-export class InventoryQueryComponent implements OnInit{
+export class InventoryQueryComponent implements OnInit {
 
+    public allDetails: ProductDetails[];
     myForm: FormGroup;
-    constructor (private orderService: OrderService) {}
+    constructor(private orderService: OrderService) { }
 
-    onSubmit() {
-        const orderForm = new OrderForm(
-            this.myForm.value.flavor,
-            "1",
-            this.myForm.value.amount
-        );
-        this.orderService.addItems(orderForm)
-            .subscribe(
-                data => console.log(data),
-                error => console.log(error)
-            );
-        this.myForm.reset();
+    sort(toSort) {
+        switch (toSort) {
+            case 0:
+                this.allDetails.sort(function (a, b) {
+                    return a.amount - b.amount;
+                });
+                break;
+            case 1:
+                this.allDetails.sort(function (a, b) {
+                    return b.amount - a.amount;
+                });
+                break;
+            case 2:
+                this.allDetails.sort(function (a, b) {
+                    return a.flavor.localeCompare(b.flavor);
+                });
+                break;
+            case 3:
+                this.allDetails.sort(function (a, b) {
+                    return b.flavor.localeCompare(a.flavor);
+                });
+                break;
+            case 4:
+                this.allDetails.sort(function (a, b) {
+                    return a.amount - b.amount;
+                });
+                break;
+            case 5:
+                this.allDetails.sort(function (a, b) {
+                    return b.amount - a.amount;
+                });
+                break;
+        }
     }
 
     ngOnInit() {
-
-        // FormGroup consolidates all controls into one object
-        this.myForm = new FormGroup({
-            flavor: new FormControl(null, Validators.required),
-            size: new FormControl(null, Validators.required),
-            amount: new FormControl(null, Validators.required)
-        });
+        this.orderService.getDetails()
+            .subscribe(
+            (details: ProductDetails[]) => {
+                this.allDetails = details;
+            });
+        console.log(this.allDetails);
     }
 }

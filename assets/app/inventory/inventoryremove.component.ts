@@ -65,6 +65,7 @@ export class InventoryRemoveComponent implements OnInit {
         this.selectedDetail.flavor = null;
         this.selectedDetail.id = null;
         this.selectedDetail.amount = null;
+        this.details = [];
     }
 
     setDetail(){
