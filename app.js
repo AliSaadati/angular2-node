@@ -13,8 +13,8 @@ var homeRoutes = require('./routes/home');
 
 
 var app = express();
-//mongoose.connect('mongodb://Ali:1234@ds153400.mlab.com:53400/inventory-tracker');
-mongoose.connect('localhost:27017/inventory');
+mongoose.connect('mongodb://Ali:1234@ds153400.mlab.com:53400/inventory-tracker');
+//mongoose.connect('localhost:27017/inventory');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

@@ -22,12 +22,12 @@ export class OrderService {
     removeInventory(orderForm: OrderForm) {
         const body = JSON.stringify(orderForm);
         const headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
-        return this.http.post('http://localhost:3000/home/remove', body, { headers: headers })
+        return this.http.post('https://inventory-manage.herokuapp.com/home/remove', body, { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
     getFlavors() {
-        return this.http.get('http://localhost:3000/home/flavors')
+        return this.http.get('https://inventory-manage.herokuapp.com/home/flavors')
             .map((response: Response) => {
                 const flavors = response.json().obj;
                 let finalFlavors: ProductFlavor[] = [];
@@ -42,7 +42,7 @@ export class OrderService {
     }
 
     getDetails() {
-        return this.http.get('http://localhost:3000/home/details')
+        return this.http.get('https://inventory-manage.herokuapp.com/home/details')
             .map((response: Response) => {
                 const products = response.json().obj;
                 let finalDetails: ProductDetails[] = [];
