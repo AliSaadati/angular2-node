@@ -1,14 +1,17 @@
 
-h1 {
-    color: brown;
-    display: inline-block;
-    font-size: 36pt;
-}
-
 .title{
     display: inline-block;
+    color: brown;
+    display: inline-block;
+    font-size: 64pt;
+    font-family: 'Coiny', cursive;
 }
 
-.title-img {
-    max-height: 130px;
+image.title-img {
+    display: inline-block;
 }
+
+/*
+font-family: 'Poiret One', cursive;
+font-family: 'Coiny', cursive;
+*/

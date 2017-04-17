@@ -1,4 +1,15 @@
 <div class="col-md-8 col-md-offset-2">
+    
+    <select style="float:right;" id="sort" (change)="sort($event.target.value)">
+        <option value="6">Date Added</option>
+        <option value="0">Name: ascending</option>
+        <option value="1">Name: descending</option>
+        <option value="2">Size: smallest to largest</option>
+        <option value="3">Size: largest to smallest</option>
+        <option value="4">Amount: most to least</option>
+        <option value="5">Amount: least to most</option>
+    </select>
+    <label style="float:right;" for="sort">Sort by&nbsp;</label>
     <table class="table table-striped">
   <thead>
     <tr>
@@ -15,5 +26,4 @@
     </tr>
   </tbody>
 </table>
-<button (click)="sort(3)">Sort</button>
 </div>
